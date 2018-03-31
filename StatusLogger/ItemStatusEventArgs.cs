@@ -5,14 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace StatusLogger {
-    class ItemStatusEventArgs : EventArgs{
+    class ItemStatusEventArgs : EventArgs {
 
         public int Id { get; set; }
         public string ItemName { get; set; }
-        public ItemConstants ItemStatus { get; set; }
+        public ItemConstants.Statuses ItemStatus { get; set; }
 
-        public ItemStatusEventArgs(string itemName, ItemConstants itemStatus) {
+        public ItemStatusEventArgs(string itemName, ItemConstants.Statuses itemStatus) {
             this.ItemName = itemName;
             this.ItemStatus = itemStatus;
         }
+    }
 }

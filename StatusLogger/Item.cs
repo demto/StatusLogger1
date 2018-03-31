@@ -9,9 +9,9 @@ namespace StatusLogger {
 
         public int Id { get; set; }
         public string ItemName { get; set; }
-        public EventHandler<ItemStatusEventArgs> ItemStatusChanged;
-        private ItemConstants itemStatus;
-        public ItemConstants ItemStatus { 
+        public event EventHandler<ItemStatusEventArgs> ItemStatusChanged;
+        private ItemConstants.Statuses itemStatus;
+        public ItemConstants.Statuses ItemStatus { 
             get { return itemStatus; } 
             set {
                 if(value != itemStatus){
@@ -21,7 +21,8 @@ namespace StatusLogger {
             }
         }
 
-        protected void OnItemStatusChanged(string itemName, ItemConstants itemStatus){
+        protected virtual void OnItemStatusChanged(string itemName, ItemConstants.Statuses itemStatus) {
             ItemStatusChanged?.Invoke(this, new ItemStatusEventArgs(ItemName, itemStatus));
+        }
     }
 }

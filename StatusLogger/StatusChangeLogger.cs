@@ -12,10 +12,10 @@ namespace StatusLogger {
         public string Log { get; set; }
         public Item Item { get; set; }
 
-        public StatusChangeLogger(Item item) {
-            this.Item = item;
+        public StatusChangeLogger() {
+            this.Item = null;
             this.LogTime = DateTime.Now;
-            this.Item = item;
+            this.Log = "";
         }
 
         public void ItemStatusChanged(object sender, ItemStatusEventArgs e){
