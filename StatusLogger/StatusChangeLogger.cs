@@ -20,8 +20,13 @@ namespace StatusLogger {
 
         public void ItemStatusChanged(object sender, ItemStatusEventArgs e){
             DirectoryInfo newDir = Directory.CreateDirectory(@"C:\MyStuff\AppLogs");
-            string filePath = @"C:\MyStuff\AppLogs\Log";
-
+            string originalFilePath = @"C:\MyStuff\AppLogs\Log.txt";
+            string filePath = originalFilePath;
+            int fileCounter = 2;
+            while(File.Exists(filePath)){
+                filePath = originalFilePath.Remove(originalFilePath.IndexOf(Path.GetExtension(originalFilePath)));
+                filePath = filePath + $"({fileCounter++})" + (Path.GetExtension(originalFilePath));
+            }
             Log = $"{DateTime.Now} - Item : {e.ItemName}'s status changed to : {e.ItemStatus}";
             using(StreamWriter sr = new StreamWriter(filePath)){
                 sr.WriteLine(Log);
